@@ -1,11 +1,38 @@
-import express from "express"
+import express from "express";
+import http from "http";
+import cors from "cors";
+import { Server } from "socket.io";
+import userRoute from "./routes/user.routes.js";
+import { initializeSocket } from "./socket/index.js";
+import type { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from "./socket/socket-types.js";
 
-const app = express();
 const PORT = 4000;
+const app = express();
 
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }),
+);
 
-console.log("first")
+app.use("/", userRoute);
 
-app.listen(PORT, () => {
-    console.log(`server is running at localhost:${PORT}`)
-})
+const server = http.createServer(app);
+
+const io = new Server<
+  ClientToServerEvents,
+  ServerToClientEvents,
+  InterServerEvents,
+  SocketData
+>(server, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+  },
+});
+initializeSocket(io);
+
+// listen on `server`, not `app`
+server.listen(PORT, () => {
+  console.log(`server is running at localhost:${PORT}`);
+});
