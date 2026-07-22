@@ -1,11 +1,20 @@
+import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./components/Home";
+import AppLayout from "./components/AppLayout";
+import ChatBox from "./components/ChatBox";
+
 const App = () => {
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-red-400">Ink And Think</h1>
-      <p className="text-base bg-red-400">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit...
-      </p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        
+        {/* Protected/Lobby routes using the shared AppLayout */}
+        <Route element={<AppLayout />}>
+          <Route path="draw" element={<ChatBox />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
