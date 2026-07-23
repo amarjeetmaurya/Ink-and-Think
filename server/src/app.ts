@@ -1,12 +1,12 @@
 import express from "express";
 import http from "http";
 import cors from "cors";
+import "dotenv/config";
 import { Server } from "socket.io";
 import userRoute from "./routes/user.routes.js";
 import { initializeSocket } from "./socket/index.js";
 import type { ClientToServerEvents, InterServerEvents, ServerToClientEvents, SocketData } from "./socket/socket-types.js";
 
-const PORT = 4000;
 const app = express();
 
 app.use(
@@ -32,7 +32,7 @@ const io = new Server<
 });
 initializeSocket(io);
 
-// listen on `server`, not `app`
-server.listen(PORT, () => {
-  console.log(`server is running at localhost:${PORT}`);
+
+server.listen(process.env.PORT, () => {
+  console.log(`server is running at localhost:${process.env.PORT}`);
 });
