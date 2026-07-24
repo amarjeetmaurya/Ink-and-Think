@@ -1,11 +1,7 @@
-import  type { Request, Response } from "express";
+import type { RequestHandler } from 'express';
+import { findUser } from '../modules/auth/auth.service.js';
 
-export const getUser = (req: Request, res: Response) => {
-  console.log("It's Working!!!");
-
-  res.status(200).json({ message: "OK" });
-};
-
-export default {
-  getUser,
+/** Returns the authenticated user's public profile. */
+export const getUser: RequestHandler = async (request, response) => {
+  response.status(200).json({ user: await findUser(request.user!.id) });
 };

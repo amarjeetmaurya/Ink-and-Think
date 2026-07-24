@@ -1,12 +1,8 @@
-import registerChatEvents from "./chat.socket.js";
-import registerRoomEvents from "./room.socket.js";
-import type { TypedServer } from "./socket-types.js";
+import type { TypedServer } from './socket-types.js';
+import { authenticateSocket } from './socket-auth.js';
+import { registerRoomEvents } from './room.socket.js';
 
-export function initializeSocket(io: TypedServer) {
-  console.log("socket trigered");
-  io.on("connection", (socket) => {
-    console.log(`Socket connected: ${socket.id}`);
-    registerChatEvents(io, socket);
-    registerRoomEvents(io, socket);
-  });
+export function initializeSocket(io: TypedServer): void {
+  io.use(authenticateSocket);
+  io.on('connection', (socket) => registerRoomEvents(io, socket));
 }
