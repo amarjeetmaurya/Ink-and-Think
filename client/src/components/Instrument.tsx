@@ -1,27 +1,27 @@
-import type { JSX } from "react/jsx-runtime";
+import type { JSX } from 'react/jsx-runtime'
 
 // Color palettes for avatar body
 const SKIN_COLORS = [
-  "#ff7675", // pastel red/pink
-  "#74b9ff", // pastel blue
-  "#55efc4", // pastel green
-  "#ffeaa7", // pastel yellow
-  "#a29bfe", // pastel purple
-  "#fd79a8", // pastel pink
-  "#e17055", // pastel orange
-  "#00cec9", // pastel teal
-  "#ffbe76", // pastel amber
-  "#badc58", // lime green
-];
+  '#ff7675', // pastel red/pink
+  '#74b9ff', // pastel blue
+  '#55efc4', // pastel green
+  '#ffeaa7', // pastel yellow
+  '#a29bfe', // pastel purple
+  '#fd79a8', // pastel pink
+  '#e17055', // pastel orange
+  '#00cec9', // pastel teal
+  '#ffbe76', // pastel amber
+  '#badc58' // lime green
+]
 
 interface EyeStyle {
-  name: string;
-  element: JSX.Element;
+  name: string
+  element: JSX.Element
 }
 // Eye styles represented as SVG groups
 const EYE_STYLES: EyeStyle[] = [
   {
-    name: "Normal",
+    name: 'Normal',
     element: (
       <g>
         <circle
@@ -32,7 +32,12 @@ const EYE_STYLES: EyeStyle[] = [
           stroke="#1e1b4b"
           strokeWidth="3"
         />
-        <circle cx="48" cy="55" r="3.5" fill="black" />
+        <circle
+          cx="48"
+          cy="55"
+          r="3.5"
+          fill="black"
+        />
         <circle
           cx="72"
           cy="55"
@@ -41,12 +46,17 @@ const EYE_STYLES: EyeStyle[] = [
           stroke="#1e1b4b"
           strokeWidth="3"
         />
-        <circle cx="72" cy="55" r="3.5" fill="black" />
+        <circle
+          cx="72"
+          cy="55"
+          r="3.5"
+          fill="black"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Happy",
+    name: 'Happy',
     element: (
       <g>
         <path
@@ -64,10 +74,10 @@ const EYE_STYLES: EyeStyle[] = [
           strokeLinecap="round"
         />
       </g>
-    ),
+    )
   },
   {
-    name: "Bored / Sleepy",
+    name: 'Bored / Sleepy',
     element: (
       <g>
         <circle
@@ -84,7 +94,12 @@ const EYE_STYLES: EyeStyle[] = [
           strokeWidth="3"
           strokeLinecap="round"
         />
-        <circle cx="48" cy="58" r="2.5" fill="black" />
+        <circle
+          cx="48"
+          cy="58"
+          r="2.5"
+          fill="black"
+        />
         <circle
           cx="72"
           cy="55"
@@ -99,12 +114,17 @@ const EYE_STYLES: EyeStyle[] = [
           strokeWidth="3"
           strokeLinecap="round"
         />
-        <circle cx="72" cy="58" r="2.5" fill="black" />
+        <circle
+          cx="72"
+          cy="58"
+          r="2.5"
+          fill="black"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Wink",
+    name: 'Wink',
     element: (
       <g>
         {/* Left eye: closed happy */}
@@ -124,12 +144,17 @@ const EYE_STYLES: EyeStyle[] = [
           stroke="#1e1b4b"
           strokeWidth="3"
         />
-        <circle cx="72" cy="55" r="3.5" fill="black" />
+        <circle
+          cx="72"
+          cy="55"
+          r="3.5"
+          fill="black"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Glasses",
+    name: 'Glasses',
     element: (
       <g>
         {/* Spectacles frame */}
@@ -143,7 +168,12 @@ const EYE_STYLES: EyeStyle[] = [
           stroke="#1e1b4b"
           strokeWidth="3"
         />
-        <circle cx="47" cy="53" r="3.5" fill="black" />
+        <circle
+          cx="47"
+          cy="53"
+          r="3.5"
+          fill="black"
+        />
         <rect
           x="62"
           y="44"
@@ -154,7 +184,12 @@ const EYE_STYLES: EyeStyle[] = [
           stroke="#1e1b4b"
           strokeWidth="3"
         />
-        <circle cx="73" cy="53" r="3.5" fill="black" />
+        <circle
+          cx="73"
+          cy="53"
+          r="3.5"
+          fill="black"
+        />
         {/* Bridge */}
         <path
           d="M 58,53 L 62,53"
@@ -176,10 +211,10 @@ const EYE_STYLES: EyeStyle[] = [
           strokeLinecap="round"
         />
       </g>
-    ),
+    )
   },
   {
-    name: "Excited Star",
+    name: 'Excited Star',
     element: (
       <g>
         {/* Left star */}
@@ -199,18 +234,18 @@ const EYE_STYLES: EyeStyle[] = [
           strokeLinejoin="round"
         />
       </g>
-    ),
-  },
-];
+    )
+  }
+]
 
 interface MouthStyle {
-  name: string;
-  element: JSX.Element;
+  name: string
+  element: JSX.Element
 }
 // Mouth styles represented as SVG groups
 const MOUTH_STYLES: MouthStyle[] = [
   {
-    name: "Big Smile",
+    name: 'Big Smile',
     element: (
       <path
         d="M 44,74 Q 60,94 76,74 Z"
@@ -219,10 +254,10 @@ const MOUTH_STYLES: MouthStyle[] = [
         strokeWidth="3.5"
         strokeLinejoin="round"
       />
-    ),
+    )
   },
   {
-    name: "Simple Smile",
+    name: 'Simple Smile',
     element: (
       <path
         d="M 46,75 Q 60,86 74,75"
@@ -231,10 +266,10 @@ const MOUTH_STYLES: MouthStyle[] = [
         strokeWidth="4.5"
         strokeLinecap="round"
       />
-    ),
+    )
   },
   {
-    name: "Tongue Out",
+    name: 'Tongue Out',
     element: (
       <g>
         {/* Smile line */}
@@ -254,12 +289,16 @@ const MOUTH_STYLES: MouthStyle[] = [
           strokeLinejoin="round"
         />
         {/* Line down middle of tongue */}
-        <path d="M 60,78 L 60,83" stroke="#1e1b4b" strokeWidth="1.5" />
+        <path
+          d="M 60,78 L 60,83"
+          stroke="#1e1b4b"
+          strokeWidth="1.5"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Surprised",
+    name: 'Surprised',
     element: (
       <circle
         cx="60"
@@ -269,10 +308,10 @@ const MOUTH_STYLES: MouthStyle[] = [
         stroke="#1e1b4b"
         strokeWidth="3.5"
       />
-    ),
+    )
   },
   {
-    name: "Worried Line",
+    name: 'Worried Line',
     element: (
       <path
         d="M 48,78 L 72,78"
@@ -280,10 +319,10 @@ const MOUTH_STYLES: MouthStyle[] = [
         strokeWidth="4.5"
         strokeLinecap="round"
       />
-    ),
+    )
   },
   {
-    name: "Cheeky Mustache",
+    name: 'Cheeky Mustache',
     element: (
       <g>
         <path
@@ -301,22 +340,22 @@ const MOUTH_STYLES: MouthStyle[] = [
           strokeLinecap="round"
         />
       </g>
-    ),
-  },
-];
+    )
+  }
+]
 
 interface HatStyle {
-  name: string;
-  element: JSX.Element | null;
+  name: string
+  element: JSX.Element | null
 }
 // Hat/Accessory styles represented as SVG groups
 const HAT_STYLES: HatStyle[] = [
   {
-    name: "None",
-    element: null,
+    name: 'None',
+    element: null
   },
   {
-    name: "Party Hat",
+    name: 'Party Hat',
     element: (
       <g>
         <polygon
@@ -350,10 +389,10 @@ const HAT_STYLES: HatStyle[] = [
           strokeLinecap="round"
         />
       </g>
-    ),
+    )
   },
   {
-    name: "Top Hat",
+    name: 'Top Hat',
     element: (
       <g>
         <rect
@@ -377,12 +416,18 @@ const HAT_STYLES: HatStyle[] = [
           strokeWidth="3.5"
         />
         {/* Red Ribbon */}
-        <rect x="40.5" y="29.5" width="39" height="4.5" fill="#d63031" />
+        <rect
+          x="40.5"
+          y="29.5"
+          width="39"
+          height="4.5"
+          fill="#d63031"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Crown",
+    name: 'Crown',
     element: (
       <g>
         <path
@@ -417,13 +462,23 @@ const HAT_STYLES: HatStyle[] = [
           stroke="#1e1b4b"
           strokeWidth="1.5"
         />
-        <circle cx="50" cy="30" r="2" fill="#2ed573" />
-        <circle cx="70" cy="30" r="2" fill="#2ed573" />
+        <circle
+          cx="50"
+          cy="30"
+          r="2"
+          fill="#2ed573"
+        />
+        <circle
+          cx="70"
+          cy="30"
+          r="2"
+          fill="#2ed573"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Ribbon Bow",
+    name: 'Ribbon Bow',
     element: (
       <g>
         <circle
@@ -448,12 +503,17 @@ const HAT_STYLES: HatStyle[] = [
           strokeWidth="3"
           strokeLinejoin="round"
         />
-        <circle cx="60" cy="36" r="2.5" fill="white" />
+        <circle
+          cx="60"
+          cy="36"
+          r="2.5"
+          fill="white"
+        />
       </g>
-    ),
+    )
   },
   {
-    name: "Cowboy Hat",
+    name: 'Cowboy Hat',
     element: (
       <g>
         <path
@@ -486,55 +546,55 @@ const HAT_STYLES: HatStyle[] = [
           fill="none"
         />
       </g>
-    ),
-  },
-];
+    )
+  }
+]
 
 interface PeekingAvatar {
-  bg: string;          // hex color
-  eyes: number;        // index into EYE_STYLES
-  mouth: number;       // index into MOUTH_STYLES
-  rot: string;         // Tailwind rotation class
-  offset: string;      // Tailwind translation class
+  bg: string // hex color
+  eyes: number // index into EYE_STYLES
+  mouth: number // index into MOUTH_STYLES
+  rot: string // Tailwind rotation class
+  offset: string // Tailwind translation class
 }
 
 // Pre-configured peeking avatar colors/styles for variety
 const PEEKING_AVATARS: PeekingAvatar[] = [
   {
-    bg: "#ff7675",
+    bg: '#ff7675',
     eyes: 0,
     mouth: 1,
-    rot: "-rotate-12",
-    offset: "-translate-x-16",
+    rot: '-rotate-12',
+    offset: '-translate-x-16'
   },
   {
-    bg: "#74b9ff",
+    bg: '#74b9ff',
     eyes: 1,
     mouth: 0,
-    rot: "-rotate-6",
-    offset: "-translate-x-8",
+    rot: '-rotate-6',
+    offset: '-translate-x-8'
   },
   {
-    bg: "#ffeaa7",
+    bg: '#ffeaa7',
     eyes: 5,
     mouth: 2,
-    rot: "rotate-0",
-    offset: "translate-x-0",
+    rot: 'rotate-0',
+    offset: 'translate-x-0'
   },
   {
-    bg: "#55efc4",
+    bg: '#55efc4',
     eyes: 0,
     mouth: 3,
-    rot: "rotate-6",
-    offset: "translate-x-8",
+    rot: 'rotate-6',
+    offset: 'translate-x-8'
   },
   {
-    bg: "#a29bfe",
+    bg: '#a29bfe',
     eyes: 2,
     mouth: 0,
-    rot: "rotate-12",
-    offset: "translate-x-16",
-  },
-];
+    rot: 'rotate-12',
+    offset: 'translate-x-16'
+  }
+]
 
-export { SKIN_COLORS, EYE_STYLES, MOUTH_STYLES, HAT_STYLES, PEEKING_AVATARS};
+export { SKIN_COLORS, EYE_STYLES, MOUTH_STYLES, HAT_STYLES, PEEKING_AVATARS }
