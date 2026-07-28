@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "lint:staged": "lint-staged",
     "preview": "vite preview",
-    "prepare": "husky",
     "format:check": "prettier --check .",
     "format:fix": "prettier --write ."
   },
