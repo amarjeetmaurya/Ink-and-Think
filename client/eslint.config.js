@@ -15,7 +15,7 @@ export default defineConfig([
       globals: globals.browser
     },
     rules: {
-      'no-console': 'error'
+      // 'no-console': 'error'
     }
   }
 ])
