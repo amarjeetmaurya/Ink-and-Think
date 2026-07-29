@@ -1,100 +1,147 @@
-import { useState, type KeyboardEvent } from "react";
-import socket from "../socket/socket.js";
-import { useEffect } from "react";
+import { useRef, useState, type KeyboardEvent } from 'react'
+import socket from '../socket/socket.js'
+import { useEffect } from 'react'
 
 interface ChatMessage {
-  text: string;
-  sender: string;
-  time: string; // ISO string
+  text: string
+  sender: string
+  time: string // ISO string
 }
 
 const ChatBox = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState("");
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [input, setInput] = useState('')
 
   const sendMessage = () => {
-    if (!input.trim()) return;
-    socket.emit("send-message", {
+    if (!input.trim()) return
+    socket.emit('send-message', {
       text: input,
       sender: socket.id,
-      time: new Date().toISOString(),
-    });
-    setInput("");
-  };
+      time: new Date().toISOString()
+    })
+    setInput('')
+  }
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      sendMessage();
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      sendMessage()
     }
-  };
+  }
+
+  const draw = () => {
+    if (!canvasRef.current) return
+    const ctx = canvasRef.current.getContext('2d')
+    if (!ctx) return;
+    ctx.fillStyle = 'blue'
+    ctx.fillRect(20, 20, 100, 50) // rectangle
+    ctx.beginPath()
+    // ctx.arc(75, 75, 50, 0, Math.PI * 2); // circle
+    ctx.fill()
+  }
 
   useEffect(() => {
-    socket.on("receive-message", (message: ChatMessage) => {
-      setMessages((prev) => [...prev, message]);
-    });
+    draw()
+  })
+
+  useEffect(() => {
+    socket.on('receive-message', (message: ChatMessage) => {
+      setMessages((prev) => [...prev, message])
+    })
 
     return () => {
-      socket.off("receive-message");
-    };
-  }, []);
+      socket.off('receive-message')
+    }
+  }, [])
 
   return (
-    <div className="w-full flex items-center justify-center p-2">
-      {/* Spiral Notebook Chat Box Container */}
-      <div className="bg-[#fffdf7] border-sketch-lg shadow-sketch-lg rounded-2xl w-full max-w-md p-4 relative font-patrick">
-        {/* Tape sticker top center */}
-        <div className="tape-sticker tape-top-left" style={{ left: "calc(50% - 45px)" }} />
+    <div className="w-full flex items-center flex-wrap justify-center">
+      {/* header  */}
+      <div className="bg-[#fffdf7] border-sketch-lg h-20 w-full max-w-328 flex justify-between p-4">
+        <div>
+          <div>clock</div>
+          <p>Round 1 of 3</p>
+        </div>
+        <div>G_e__</div>
+        <div>Setting</div>
+      </div>
 
-        {/* Notebook Title */}
-        <div className="font-caveat font-extrabold text-3xl text-indigo-950 text-center border-b-2 border-dashed border-indigo-950/30 pb-2 mb-3">
-          💬 Live Chat & Guesses
+      {/* main  */}
+      <div className="flex items-center justify-center w-full max-w-328">
+        {/* All players */}
+        <div className="bg-[#fffdf7] border-sketch-sm shadow-sketch-lg rounded-2xl h-150 w-68 p-4 relative font-patrick">
+          {/* Tape sticker top center */}
+          <div
+            className="tape-sticker tape-top-left"
+            style={{ left: 'calc(50% - 45px)' }}
+          />
+          <div className="p-2 border">Player1</div>
+          <div className="p-2 border">Player2</div>
+          <div className="p-2 border">Player3</div>
+        </div>
+        {/* Draw Board  */}
+        <div className="bg-[#fffdf7] border-sketch-sm shadow-sketch-lg rounded-2xl w-200 h-150 p-2 relative font-patrick">
+          <canvas
+            ref={canvasRef}
+            className="h-full w-full border-sketch-sm border"
+          />
         </div>
 
-        {/* Messages Container with Ruled Paper lines */}
-        <div className="bg-ruled-paper border-sketch-sm rounded-xl p-3 h-96 overflow-y-auto custom-scrollbar flex flex-col gap-2 mb-3 shadow-inner">
-          {messages.length === 0 ? (
-            <div className="h-full flex items-center justify-center text-indigo-900/40 font-kalam text-lg italic text-center">
-              ✏️ Type a message or guess the word...
-            </div>
-          ) : (
-            messages.map((msg, index) => (
-              <div
-                key={index}
-                className="bg-[#fef9c3] border-sketch-sm p-2.5 rounded-xl shadow-sketch-sm text-indigo-950 font-kalam text-sm flex flex-col gap-0.5"
-              >
-                <div className="flex justify-between items-center text-[11px] text-indigo-800/60 font-bold border-b border-indigo-950/10 pb-0.5">
-                  <span>{msg.sender === socket.id ? "You" : `Player (${msg.sender.slice(0, 4)})`}</span>
-                  <span>{new Date(msg.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                </div>
-                <div className="font-bold text-base mt-0.5 text-indigo-950">
-                  {msg.text}
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        {/* Input & Send Bar */}
-        <div className="flex gap-2">
-          <input
-            className="flex-1 bg-[#fcf9f2] border-sketch-sm rounded-xl px-3 py-2 text-indigo-950 font-kalam font-bold text-lg placeholder-indigo-900/40 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-all"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Type your guess..."
+        {/* Spiral Notebook Chat Box Container */}
+        <div className="bg-[#fffdf7] border-sketch-sm shadow-sketch-lg rounded-2xl w-68 h-150 p-4 relative font-patrick">
+          {/* Tape sticker top center */}
+          <div
+            className="tape-sticker tape-top-left"
+            style={{ left: 'calc(50% - 45px)' }}
           />
 
-          <button
-            className="btn-sketch bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 text-lg font-kalam font-bold shadow-sketch-indigo rounded-xl"
-            onClick={sendMessage}
-          >
-            Send ✏️
-          </button>
+          {/* Notebook Title */}
+          <div className="font-caveat font-extrabold text-3xl text-indigo-950 text-center border-b-2 border-dashed border-indigo-950/30 pb-2 mb-3">
+            💬 Live Chat & Guesses
+          </div>
+
+          {/* Messages Container with Ruled Paper lines */}
+          <div className="bg-ruled-paper border-sketch-sm rounded-xl p-3 h-96 overflow-y-auto custom-scrollbar flex flex-col gap-2 mb-3 shadow-inner">
+            {messages.length === 0 ? (
+              <div className="h-full flex items-center justify-center text-indigo-900/40 font-kalam text-lg italic text-center">
+                ✏️ Type a message or guess the word...
+              </div>
+            ) : (
+              messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className="bg-[#fef9c3] border-sketch-sm p-2.5 rounded-xl shadow-sketch-sm text-indigo-950 font-kalam text-sm flex flex-col gap-0.5">
+                  <div className="flex justify-between items-center text-[11px] text-indigo-800/60 font-bold border-b border-indigo-950/10 pb-0.5">
+                    <span>{msg.sender === socket.id ? 'You' : `Player (${msg.sender.slice(0, 4)})`}</span>
+                    <span>{new Date(msg.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                  </div>
+                  <div className="font-bold text-base mt-0.5 text-indigo-950">{msg.text}</div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Input & Send Bar */}
+          <div className="flex gap-2">
+            <input
+              className="flex-1 bg-[#fcf9f2] border-sketch-sm rounded-xl pl-3 w-48 text-indigo-950 font-kalam font-bold text-lg placeholder-indigo-900/40 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-600 transition-all"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Type your guess..."
+            />
+
+            <button
+              className="btn-sketch bg-indigo-600 hover:bg-indigo-500 text-white px-3 text-lg font-kalam font-bold shadow-sketch-indigo rounded-xl"
+              onClick={sendMessage}>
+              Send ✏️
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ChatBox;
+export default ChatBox
