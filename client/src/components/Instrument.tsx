@@ -1,4 +1,4 @@
-import type { JSX } from 'react/jsx-runtime'
+import type { JSX } from 'react/jsx-runtime';
 
 // Color palettes for avatar body
 const SKIN_COLORS = [
@@ -12,11 +12,11 @@ const SKIN_COLORS = [
   '#00cec9', // pastel teal
   '#ffbe76', // pastel amber
   '#badc58' // lime green
-]
+];
 
 interface EyeStyle {
-  name: string
-  element: JSX.Element
+  name: string;
+  element: JSX.Element;
 }
 // Eye styles represented as SVG groups
 const EYE_STYLES: EyeStyle[] = [
@@ -236,11 +236,11 @@ const EYE_STYLES: EyeStyle[] = [
       </g>
     )
   }
-]
+];
 
 interface MouthStyle {
-  name: string
-  element: JSX.Element
+  name: string;
+  element: JSX.Element;
 }
 // Mouth styles represented as SVG groups
 const MOUTH_STYLES: MouthStyle[] = [
@@ -342,11 +342,11 @@ const MOUTH_STYLES: MouthStyle[] = [
       </g>
     )
   }
-]
+];
 
 interface HatStyle {
-  name: string
-  element: JSX.Element | null
+  name: string;
+  element: JSX.Element | null;
 }
 // Hat/Accessory styles represented as SVG groups
 const HAT_STYLES: HatStyle[] = [
@@ -548,14 +548,14 @@ const HAT_STYLES: HatStyle[] = [
       </g>
     )
   }
-]
+];
 
 interface PeekingAvatar {
-  bg: string // hex color
-  eyes: number // index into EYE_STYLES
-  mouth: number // index into MOUTH_STYLES
-  rot: string // Tailwind rotation class
-  offset: string // Tailwind translation class
+  bg: string; // hex color
+  eyes: number; // index into EYE_STYLES
+  mouth: number; // index into MOUTH_STYLES
+  rot: string; // Tailwind rotation class
+  offset: string; // Tailwind translation class
 }
 
 // Pre-configured peeking avatar colors/styles for variety
@@ -595,6 +595,6 @@ const PEEKING_AVATARS: PeekingAvatar[] = [
     rot: 'rotate-12',
     offset: 'translate-x-16'
   }
-]
+];
 
-export { SKIN_COLORS, EYE_STYLES, MOUTH_STYLES, HAT_STYLES, PEEKING_AVATARS }
+export { SKIN_COLORS, EYE_STYLES, MOUTH_STYLES, HAT_STYLES, PEEKING_AVATARS };
