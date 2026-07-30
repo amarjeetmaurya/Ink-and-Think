@@ -158,12 +158,12 @@ const ChatBox = () => {
       {/* header  */}
       <Header />
 
-      <div className="grid grid-cols-[0.6fr_2.3fr_0.7fr] w-full max-w-328">
+      <div className="grid grid-cols-[0.6fr_2.3fr_0.7fr] w-full max-w-328 three-col-layout">
         {/* Left */}
         <Players />
 
         {/* Middle */}
-        <div className="bg-gray-100 aspect-4/3 w-full items-center flex justify-center">
+        <div className="bg-[#fffdf7] aspect-4/3 w-full items-center flex justify-center middle">
           <div className="bg-[#fffdf7] h-full max-w-200 max-h-150">
             <canvas
               ref={canvasRef}

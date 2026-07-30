@@ -3,7 +3,7 @@ import SkribbleText from './SkribbleText';
 
 const AppLayout = () => {
   return (
-    <div className="min-h-screen bg-paper-grid text-[#1e1b4b] flex flex-col font-patrick">
+    <div className="bg-paper-grid text-[#1e1b4b] flex flex-col font-patrick ">
       {/* Hand-Drawn Notebook Header */}
       <header className="sticky top-0 z-50 bg-[#fffdf7] border-b-4 border-[#1e1b4b] shadow-sketch-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -38,7 +38,7 @@ const AppLayout = () => {
       </header>
 
       {/* Nested Content Outlet */}
-      <main className="w-full px-4 sm:px-6 lg:px-8 py-6 ">
+      <main className="w-full max-h-screen md:max-h-[90vh] py-2">
         <Outlet />
       </main>
     </div>

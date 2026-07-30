@@ -4,6 +4,7 @@
 /* Hand-Drawn & Handmade Design System                                      */
 /* -------------------------------------------------------------------------- */
 
+
 @layer base {
   body {
     font-family: 'Patrick Hand', 'Kalam', cursive, sans-serif;
@@ -224,7 +225,7 @@
 }
 
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   .grid {
     grid-template-areas:
       "middle middle"
@@ -234,4 +235,23 @@
   .bg-gray-100 { grid-area: middle; }
   .bg-red-300 { grid-area: left; }
   .bg-blue-300 { grid-area: right; }
+} */
+
+@media (max-width: 1000px) {
+  .three-col-layout {
+    grid-template-areas:
+      "middle middle"
+      "left right";
+    grid-template-columns: 1fr 1fr;
+  }
+  .three-col-layout .middle { grid-area: middle; }
+  .three-col-layout .left   { grid-area: left; }
+  .three-col-layout .right  { grid-area: right; }
+}
+
+
+@media (min-height: 1000px) {
+  .hide-on-small-height {
+    display: none;
+  }
 }
