@@ -39,13 +39,15 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-paper-grid text-[#1e1b4b] flex flex-col items-center justify-between font-patrick relative pb-8">
       {/* Header section with bouncing handwritten logo */}
-      <header className="sticky top-0 z-50 bg-[#fffdf7] border-b-4 border-[#1e1b4b] shadow-sketch-sm md:hidden">
+      <header className="sticky top-0 z-50 bg-[#fffdf7] border-b-4 border-[#1e1b4b] shadow-sketch-sm">
         {' '}
         <SkribbleText textSize={5} />
         <div className="inline-block mt-2 font-kalam text-lg font-bold text-indigo-900 highlighter-yellow -rotate-1 shadow-sm px-3 py-1">
           ✏️ The Hand-Drawn Skribbl & Guessing Game!
         </div>
       </header>
+
+      ccd
 
       {/* Main Container Card Area */}
       <main className="w-full flex-1 flex flex-col items-center justify-center gap-10 px-4 max-w-6xl">

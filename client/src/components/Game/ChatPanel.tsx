@@ -30,7 +30,7 @@ const ChatPanel = ({ messages, input, onInputChange, sendMessage, handleKeyDown 
       </div>
 
       {/* Messages Container with Ruled Paper lines */}
-      <div className="bg-ruled-paper border-sketch-sm rounded-xl p-3 overflow-y-auto custom-scrollbar flex flex-col gap-2 mb-3 shadow-inner">
+      <div className="bg-ruled-paper border-sketch-sm rounded-xl p-3 overflow-y-auto custom-scrollbar flex flex-col gap-2 mb-3 shadow-inner ">
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center text-indigo-900/40 font-kalam text-lg  italic text-center">
             ✏️ Type a message or guess the word...

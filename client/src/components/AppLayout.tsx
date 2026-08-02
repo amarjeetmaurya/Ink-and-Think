@@ -5,7 +5,7 @@ const AppLayout = () => {
   return (
     <div className="bg-paper-grid text-[#1e1b4b] flex flex-col font-patrick ">
       {/* Hand-Drawn Notebook Header */}
-      <header className="sticky top-0 z-50 bg-[#fffdf7] border-b-4 border-[#1e1b4b] shadow-sketch-sm">
+      <header className="sticky top-0 z-50 bg-[#fffdf7] border-b-4 border-[#1e1b4b] shadow-sketch-sm lg:block hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link
             to="/"
